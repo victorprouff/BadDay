@@ -1,12 +1,22 @@
 [
   {
     "Name": "Quack",
-    "YoutubeId": "4ItNNjJhwwU",
+    "Id": "4ItNNjJhwwU",
     "Type": 1
   },
   {
     "Name": "Otarie qui tourne",
-    "YoutubeId": "hFMa8QepUrk",
+    "Id": "hFMa8QepUrk",
     "Type": 1
+  },
+  {
+    "Name": "One More Kiss",
+    "Id": "C_tiequCn_e",
+    "Type": 3
+  },
+  {
+    "Name": "Test",
+    "Id": "C_9aO8BhHO",
+    "Type": 3
   }
 ]
