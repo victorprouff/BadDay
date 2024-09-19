@@ -1,6 +1,61 @@
 @page "/BadDay"
-<h3>BadDay Response</h3>
+@inject HttpClient Http
+
+<h3>Having a bad day?</h3>
+
+<button class="btn" @onclick="Callback">Click here !</button>
+
+@if (string.IsNullOrWhiteSpace(_youtubeIdSelected) is false)
+{
+    <div>
+        <h2>@_mediaNameSelected</h2>
+        <iframe title="YouTube video player" src="https://www.youtube.com/embed/@_youtubeIdSelected" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+    </div>
+}
 
 @code {
 
+    /*
+     * Todo :
+     *  Suggestion de video ou image
+     *  Voir pour afficher video/image instagram
+     *
+     */
+
+    private FunnyMedia[]? _videos;
+    string _youtubeIdSelected = string.Empty;
+    string _mediaNameSelected = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _videos = await Http.GetFromJsonAsync<FunnyMedia[]>("sample-data/FunnyMedias.json");
+    }
+
+    private void Callback()
+    {
+        if (_videos is null)
+        {
+            return;
+        }
+
+        var rand = new Random();
+
+        var media = _videos[rand.Next(_videos.Length)];
+
+        _youtubeIdSelected = media.YoutubeId;
+        _mediaNameSelected = media.Name;
+    }
+
+    public class FunnyMedia
+    {
+        public string Name { get; set; }
+        public string YoutubeId { get; set; }
+        public TypeFunnyMedia Type { get; set; }
+    }
+
+    public enum TypeFunnyMedia
+    {
+        Video = 1,
+        Image = 2
+    }
 }
