@@ -21,11 +21,9 @@ jobs:
           - name: Publish .NET Core Project
             run: dotnet publish BadDay.csproj -c Release/net8.0/publish -o release --nologo
 
-          - name: files-ls
-            uses: sigyl-actions/files-ls@v0.0.1
-            with:
-              # folder to list
-              folder: /
+          - name: ls -al
+            run: |
+              ls -al
 
           - name: copy index.html to 404.html
             run: cp release/wwwroot/index.html release/wwwroot/404.html
