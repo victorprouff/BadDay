@@ -34,4 +34,4 @@ jobs:
               server: ${{ secrets.FTP_SERVER }}
               user: ${{ secrets.FTP_USER }}
               password: ${{ secrets.FTP_PASSWORD }}
-              local_dir: ./bin/Release/net8.0/publish/wwwroot
+              local_dir: ./bin/Release/net8.0/wwwroot
