@@ -23,7 +23,9 @@ jobs:
 
           - name: ls -al
             run: |
-              ls -al
+              ls -al release
+              ls -al wwwroot
+              ls -al bin
 
           - name: copy index.html to 404.html
             run: cp release/wwwroot/index.html release/wwwroot/404.html
