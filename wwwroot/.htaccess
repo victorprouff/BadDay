@@ -1,9 +1,4 @@
 <IfModule mod_headers.c>
-    # Serve brotli compressed files if they exist and the client accepts brotli.
-    RewriteCond "%{HTTP:Accept-encoding}" "br"
-    RewriteCond "%{REQUEST_FILENAME}\.br" "-s"
-    RewriteRule "^(.*)\.(js|json|css|dll|dat|blat|wasm)$" "$1\.$2\.br" [QSA]
-
     # Serve gzip compressed files if they exist and the client accepts gzip.
     RewriteCond "%{HTTP:Accept-encoding}" "gz"
     RewriteCond "%{REQUEST_FILENAME}\.gz" "-s"
