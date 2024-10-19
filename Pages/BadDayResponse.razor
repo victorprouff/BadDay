@@ -11,48 +11,38 @@
 <div class="d-flex justify-content-center mt-4">
     @if (_mediaSelected is not null)
     {
-        <div>
-            @if (_mediaSelected.Type == TypeMedia.Video)
-            {
-                <iframe title="YouTube video player" src="https://www.youtube.com/embed/@_mediaSelected.Id" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-            }
-            @if (_mediaSelected.Type == TypeMedia.Instagram)
-            {
-                <iframe src="https://www.instagram.com/p/@(_mediaSelected.Id)/embed"
-                        width="540"
-                        height="600"
-                        frameborder="0"
-                        scrolling="no"
-                        allowtransparency>
-                </iframe>
-            }
-        </div>
+        <iframe src="https://www.instagram.com/p/@(_mediaSelected.Id)/embed"
+                width="540"
+                height="600"
+                frameborder="0"
+                scrolling="no"
+                allowtransparency>
+        </iframe>
     }
 </div>
 
 @code {
+    private Post[]? _posts;
 
-    private FunnyMedia[]? _videos;
-
-    FunnyMedia? _mediaSelected;
+    Post? _mediaSelected;
 
     string _clickMessage = "Click here !";
 
     protected override async Task OnInitializedAsync()
     {
-        _videos = await Http.GetFromJsonAsync<FunnyMedia[]>("sample-data/FunnyMedias.json");
+        _posts = await Http.GetFromJsonAsync<Post[]>("data/Medias.json");
     }
 
     private async Task Callback()
     {
-        if (_videos is null)
+        if (_posts is null)
         {
             return;
         }
 
         var rand = new Random();
 
-        _mediaSelected = _videos[rand.Next(_videos.Length)];
+        _mediaSelected = _posts[rand.Next(_posts.Length)];
 
         if (_mediaSelected.Type == TypeMedia.Instagram)
         {
@@ -67,11 +57,12 @@
         await JsRuntime.InvokeVoidAsync("refreshInstagramEmbed");
     }
 
-    public class FunnyMedia
+    public class Post
     {
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public TypeMedia Type { get; set; }
+        public string Name { get; init; }
+        public string Id { get; init; }
+        public string Url { get; init; }
+        public TypeMedia Type { get; init; }
     }
 
     public enum TypeMedia
