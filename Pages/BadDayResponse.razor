@@ -27,7 +27,7 @@
     </div>
 }
 
-<button class="btn btn-outline-secondary m-1" @onclick="Test">Run Random List</button>
+@* <button class="btn btn-outline-secondary m-1" @onclick="Test">Run Random List</button> *@
 
 @* <textarea class="form-control" aria-multiline="true" rows="70" @bind="@_logs"></textarea> *@
 
@@ -88,7 +88,6 @@
 
         var random = new Random();
         _postRandomize = _posts.OrderBy(_ => random.Next()).ToList();
-        // Random.Shared.Shuffle(_postRandomize.ToArray());
     }
 
     private void WriteLog()
@@ -111,6 +110,5 @@
         public string Url { get; init; }
         public int Type { get; init; }
     }
-
 }
 
