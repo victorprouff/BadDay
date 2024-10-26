@@ -1,5 +1,6 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #212529;
 }
 
 h1:focus {
@@ -101,3 +102,13 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+/*[data-bs-theme="dark"] {*/
+/*    --bs-primary: $primary;*/
+/*    --bs-primary-bg-subtle: $primary;*/
+/*    --bs-primary-bg-subtle-dark: $primary;*/
+
+/*    .btn-primary {*/
+/*        --bs-btn-bg: $primary;*/
+/*    }*/
+/*}*/
